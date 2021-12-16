@@ -39,6 +39,15 @@ doctorsButton.addEventListener('click', () => {
     getAllDoctors()
 })
 
+companionButton.addEventListener('click', () => {
+    categoryContainer.innerText = ''
+    subcategoryContainer.innerText = ''
+    episodeDetails.innerText = ''
+    directorButton.innerText = ''
+    // change refresh button from none to block
+    getAllCompanions()
+})
+
     // fetches
 function getAllSeasons() {
     fetch(allSeasonsURL)
