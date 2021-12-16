@@ -1,0 +1,29 @@
+html {
+    background-color: rgb(16, 35, 114);
+    color: white;
+}
+
+body {
+    background-color: rgba(16, 35, 114, 0.85);
+}
+
+#header-black-box {
+    background-color: black;
+    width: 100%;
+    height: 250px;
+    text-align: center;
+}
+
+#header {
+    height: 100%;
+}
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.spacer {
+    width: 50px;
+    margin-bottom: 25px;
+}
