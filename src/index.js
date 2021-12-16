@@ -90,24 +90,17 @@ function renderAllDirectors(director) {
 
 function renderAllWriters(writer) {
     let writerName = create('p')
-    writerName.innerText = writer.id
+    writerName.innerText = writer.name
     writerName.addEventListener('click', () => getAndRenderOneWriter(writer))
+    firstContainer.append(writerName)
 }
 
     // get and render one functions
 function getAndRenderOneSeason(season) {
-    secondContainer.innerText = ''
-    let episodeDiv = create('div')
-    episodeDiv.id = 'episode-div'
-    episodeDiv.innerText = `${season.name}:`
-    secondContainer.append(episodeDiv)
+    secondContainer.innerText = `${season.name}:`
     fetch(`${allSeasonsURL}${season.id}/serials`)
     .then(r => r.json())
-    .then(season => season.forEach(episode => {
-        let episodeName = create('h2')
-        episodeName.innerText = `${episode.serial}. ${episode.title}`
-        episodeDiv.append(episodeName)
-    }))
+    .then(season => season.forEach(episode => renderOneEpisode(`${episode.serial}. ${episode.title}`)))
 }
 
 function getAndRenderOneDoctor(doctor) {
@@ -138,18 +131,19 @@ function getAndRenderOneDoctor(doctor) {
 }
 
 function getAndRenderOneDirector(director) {
-    secondContainer.innerText = ''
-    let episodeDiv = create('div')
-    episodeDiv.innerText = `${director.name}'s Episodes:`
-    secondContainer.append(episodeDiv)
+    secondContainer.innerText = `${director.name} directed the following episodes:`
     fetch(`${allDirectorsURL}${director.id}/serials`)
     .then(r => r.json())
-    .then(director => director.forEach(directorEpisode => {
-        let episodeName = create('p')
-        episodeName.innerText = directorEpisode.title
-        episodeDiv.append(episodeName)
-    }))
+    .then(episodes => episodes.forEach(episode => renderOneEpisode(`${episode.title}`)))
 }
+
+function getAndRenderOneWriter(writer) {
+    secondContainer.innerText = `${writer.name} wrote the following episodes:`
+    fetch(`${allWritersURL}${writer.id}/serials`)
+    .then(r => r.json())
+    .then(episodes => episodes.forEach(episode => renderOneEpisode(`${episode.title}`)))
+}
+
 
     // callback functions
 function clearPage() {
@@ -158,4 +152,10 @@ function clearPage() {
     extraContainer.innerText = ''
     writersButton.innerText = ''
     // change refresh button from none to block
+}
+
+function renderOneEpisode(path) {
+    let episodeName = create('p')
+    episodeName.innerText = path
+    secondContainer.append(episodeName)
 }
