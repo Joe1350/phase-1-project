@@ -103,10 +103,6 @@ function renderAllSeasons(season) {
     categoryContainer.append(seasonName)
 }
 
-function renderAllEpisodesForSeason(episode) {
-    
-}
-
 function renderAllDoctors(doctor) {
     let doctorName = create('h1')
     doctorName.innerText = doctor.incarnation
