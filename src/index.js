@@ -59,6 +59,11 @@ function getAllDoctors() {
     .then(doctors => doctors.forEach(doctor => renderAllDoctors(doctor)))
 }
 
+function getAllDirectors() {
+    fetch(allDirectorsURL)
+    .then(r => r.json())
+    .then(directors => directors.forEach(director => console.log(director)))
+}
 
     // render  all functions
 function renderAllSeasons(season) {
