@@ -1,6 +1,6 @@
     // URL's
 const allSeasonsURL = 'https://api.catalogopolis.xyz/v1/seasons/'
-const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors'
+const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors/'
 const allDirectorsURL = 'https://api.catalogopolis.xyz/v1/directors/'
 const allWritersURL = 'https://api.catalogopolis.xyz/v1/writers/'
 
@@ -20,30 +20,23 @@ const writersButton = select('#writers-button')
 
     // event listeners
 seasonsButton.addEventListener('click', () => {
-    firstContainer.innerText = ''
-    secondContainer.innerText = ''
-    extraContainer.innerText = ''
-    writersButton.innerText = ''
-    // change refresh button from none to block
+    clearPage()
     getAllSeasons()
 })
 
 doctorsButton.addEventListener('click', () => {
-    firstContainer.innerText = ''
-    secondContainer.innerText = ''
-    extraContainer.innerText = ''
-    writersButton.innerText = ''
-    // change refresh button from none to block
+    clearPage()
     getAllDoctors()
 })
 
 directorButton.addEventListener('click', () => {
-    firstContainer.innerText = ''
-    secondContainer.innerText = ''
-    extraContainer.innerText = ''
-    writersButton.innerText = ''
-    // change refresh button from none to block
+    clearPage()
     getAllDirectors()
+})
+
+writersButton.addEventListener('click', () => {
+    clearPage()
+    getAllWriters()
 })
 
     // get all fetches
@@ -89,7 +82,7 @@ function renderAllDirectors(director) {
     firstContainer.append(directorName)
 }
 
-    // get one w/ render one functions
+    // get and render one functions
 function getAndRenderOneSeason(season) {
     secondContainer.innerText = ''
     let episodeDiv = create('div')
@@ -116,14 +109,14 @@ function getAndRenderOneDoctor(doctor) {
     episodesDiv.innerText = 'Episodes the actor was in:'
     spacer.className = 'spacer'
     secondContainer.append(actorDiv, spacer, episodesDiv)
-    fetch(`https://api.catalogopolis.xyz/v1/doctors/${doctor.id}/actors`)
+    fetch(`${allDoctorsURL}${doctor.id}/actors`)
     .then(r => r.json())
     .then(actor => actor.forEach(actor => {
         let actorName = create('h2')
         actorName.innerText = actor.name
         actorDiv.append(actorName)
     }))
-    fetch(`https://api.catalogopolis.xyz/v1/doctors/${doctor.id}/serials`)
+    fetch(`${allDoctorsURL}${doctor.id}/serials`)
     .then(r => r.json())
     .then(doctorEpisodes => doctorEpisodes.forEach(doctorEpisode => {
         let episodeName = create('h2')
@@ -144,4 +137,13 @@ function getAndRenderOneDirector(director) {
         episodeName.innerText = directorEpisode.title
         episodeDiv.append(episodeName)
     }))
+}
+
+    // callback functions
+function clearPage() {
+    firstContainer.innerText = ''
+    secondContainer.innerText = ''
+    extraContainer.innerText = ''
+    writersButton.innerText = ''
+    // change refresh button from none to block
 }
