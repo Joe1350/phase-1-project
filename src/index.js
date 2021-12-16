@@ -101,3 +101,11 @@ function renderAllEpisodesForSeason(episode) {
     episodeName.addEventListener('click', () => getOneEpisode(episode))
     subcategoryContainer.append(episodeName)
 }
+
+function renderAllDoctors(doctor) {
+    let doctorName = create('h1')
+    doctorName.innerText = doctor.incarnation
+    doctorName.style.fontSize = '20px'
+    doctorName.addEventListener('click', () => getOneDoctor(doctor))
+    categoryContainer.append(doctorName)
+}
