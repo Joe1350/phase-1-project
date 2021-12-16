@@ -1,7 +1,6 @@
     // URL's
 const allSeasonsURL = 'https://api.catalogopolis.xyz/v1/seasons/'
 const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors'
-const allCompanionsURL = 'https://api.catalogopolis.xyz/v1/companions'
 const allDirectorsURL = 'https://api.catalogopolis.xyz/v1/directors'
 
     // helpers
@@ -17,7 +16,6 @@ const likesAndCommentsContainer = select('#likes-comments-container')
 //might rename the container
 const seasonsButton = select('#seasons-button')
 const doctorsButton = select('#doctors-button')
-const companionButton = select('#companions-button')
 const directorButton = select('#directors-button')
 
     // event listeners
@@ -37,15 +35,6 @@ doctorsButton.addEventListener('click', () => {
     directorButton.innerText = ''
     // change refresh button from none to block
     getAllDoctors()
-})
-
-companionButton.addEventListener('click', () => {
-    categoryContainer.innerText = ''
-    subcategoryContainer.innerText = ''
-    episodeDetails.innerText = ''
-    directorButton.innerText = ''
-    // change refresh button from none to block
-    getAllCompanions()
 })
 
     // fetches
