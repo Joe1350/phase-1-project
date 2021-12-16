@@ -2,54 +2,78 @@
 const allSeasonsURL = 'https://api.catalogopolis.xyz/v1/seasons/'
 const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors'
 const allDirectorsURL = 'https://api.catalogopolis.xyz/v1/directors'
+const allWritersURL = 'https://api.catalogopolis.xyz/v1/writers'
 
     // helpers
 const create = el => document.createElement(el)
 const select = el => document.querySelector(el)
 
     // grab stuff
-const categoryContainer = select('#category-container')
-const subcategoryContainer = select('#subcategory-container')
-const episodeDetails = select('#episode-detail-container')
-// might rename the container
-const likesAndCommentsContainer = select('#likes-comments-container')
-//might rename the container
+const firstContainer = select('#first-container')
+const secondContainer = select('#second-container')
+const extraContainer = select('#third-container')
+const refreshContainer = select('#fourth-container')
 const seasonsButton = select('#seasons-button')
 const doctorsButton = select('#doctors-button')
 const directorButton = select('#directors-button')
+const writersButton = select('#writers-button')
 
     // event listeners
 seasonsButton.addEventListener('click', () => {
-    categoryContainer.innerText = ''
-    subcategoryContainer.innerText = ''
-    episodeDetails.innerText = ''
-    likesAndCommentsContainer.innerText = ''
+    firstContainer.innerText = ''
+    secondContainer.innerText = ''
+    extraContainer.innerText = ''
+    writersButton.innerText = ''
     // change refresh button from none to block
     getAllSeasons()
 })
 
 doctorsButton.addEventListener('click', () => {
-    categoryContainer.innerText = ''
-    subcategoryContainer.innerText = ''
-    episodeDetails.innerText = ''
-    directorButton.innerText = ''
+    firstContainer.innerText = ''
+    secondContainer.innerText = ''
+    extraContainer.innerText = ''
+    writersButton.innerText = ''
     // change refresh button from none to block
     getAllDoctors()
 })
 
-    // fetches
+    // get all fetches
 function getAllSeasons() {
     fetch(allSeasonsURL)
     .then(r => r.json())
     .then(seasons => seasons.forEach(season => renderAllSeasons(season)))
 }
 
+function getAllDoctors() {
+    fetch(allDoctorsURL)
+    .then(r => r.json())
+    .then(doctors => doctors.forEach(doctor => renderAllDoctors(doctor)))
+}
+
+    // render  all functions
+function renderAllSeasons(season) {
+    let seasonName = create('h1')
+    seasonName.innerText = season.name
+    seasonName.style.fontSize = '20px'
+    seasonName.addEventListener('click', () => getOneSeason(season))
+    firstContainer.append(seasonName)
+}
+
+function renderAllDoctors(doctor) {
+    let doctorName = create('h1')
+    doctorName.innerText = doctor.incarnation
+    doctorName.style.fontSize = '20px'
+    doctorName.addEventListener('click', () => getOneDoctor(doctor))
+    firstContainer.append(doctorName)
+}
+
+    // get one w/ render one functions
 function getOneSeason(season) {
-    subcategoryContainer.innerText = ''
+    secondContainer.innerText = ''
     let episodeDiv = create('div')
     episodeDiv.id = 'episode-div'
     episodeDiv.innerText = `${season.name}:`
-    subcategoryContainer.append(episodeDiv)
+    secondContainer.append(episodeDiv)
     fetch(`${allSeasonsURL}${season.id}/serials`)
     .then(r => r.json())
     .then(season => season.forEach(episode => {
@@ -59,14 +83,8 @@ function getOneSeason(season) {
     }))
 }
 
-function getAllDoctors() {
-    fetch(allDoctorsURL)
-    .then(r => r.json())
-    .then(doctors => doctors.forEach(doctor => renderAllDoctors(doctor)))
-}
-
 function getOneDoctor(doctor) {
-    subcategoryContainer.innerText = ''
+    secondContainer.innerText = ''
     let actorDiv = create('div')
     let episodesDiv = create('Div')
     let spacer = create('div')
@@ -75,7 +93,7 @@ function getOneDoctor(doctor) {
     episodesDiv.id = 'episodes'
     episodesDiv.innerText = 'Episodes the actor was in:'
     spacer.className = 'spacer'
-    subcategoryContainer.append(actorDiv, spacer, episodesDiv)
+    secondContainer.append(actorDiv, spacer, episodesDiv)
     fetch(`https://api.catalogopolis.xyz/v1/doctors/${doctor.id}/actors`)
     .then(r => r.json())
     .then(actor => actor.forEach(actor => {
@@ -90,21 +108,4 @@ function getOneDoctor(doctor) {
         episodeName.innerText = doctorEpisode.title
         episodesDiv.append(episodeName)
     }))
-}
-
-    // render function
-function renderAllSeasons(season) {
-    let seasonName = create('h1')
-    seasonName.innerText = season.name
-    seasonName.style.fontSize = '20px'
-    seasonName.addEventListener('click', () => getOneSeason(season))
-    categoryContainer.append(seasonName)
-}
-
-function renderAllDoctors(doctor) {
-    let doctorName = create('h1')
-    doctorName.innerText = doctor.incarnation
-    doctorName.style.fontSize = '20px'
-    doctorName.addEventListener('click', () => getOneDoctor(doctor))
-    categoryContainer.append(doctorName)
 }
