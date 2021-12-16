@@ -66,17 +66,15 @@ function getAllWriters() {
 
     // render  all functions
 function renderAllSeasons(season) {
-    let seasonName = create('h1')
+    let seasonName = create('p')
     seasonName.innerText = season.name
-    seasonName.style.fontSize = '20px'
     seasonName.addEventListener('click', () => getAndRenderOneSeason(season))
     firstContainer.append(seasonName)
 }
 
 function renderAllDoctors(doctor) {
-    let doctorName = create('h1')
+    let doctorName = create('p')
     doctorName.innerText = doctor.incarnation
-    doctorName.style.fontSize = '20px'
     doctorName.addEventListener('click', () => getAndRenderOneDoctor(doctor))
     firstContainer.append(doctorName)
 }
@@ -117,14 +115,14 @@ function getAndRenderOneDoctor(doctor) {
     fetch(`${allDoctorsURL}${doctor.id}/actors`)
     .then(r => r.json())
     .then(actor => actor.forEach(actor => {
-        let actorName = create('h2')
+        let actorName = create('p')
         actorName.innerText = actor.name
         actorDiv.append(actorName)
     }))
     fetch(`${allDoctorsURL}${doctor.id}/serials`)
     .then(r => r.json())
     .then(doctorEpisodes => doctorEpisodes.forEach(doctorEpisode => {
-        let episodeName = create('h2')
+        let episodeName = create('p')
         episodeName.innerText = doctorEpisode.title
         episodesDiv.append(episodeName)
     }))
