@@ -88,6 +88,12 @@ function renderAllDirectors(director) {
     firstContainer.append(directorName)
 }
 
+function renderAllWriters(writer) {
+    let writerName = create('p')
+    writerName.innerText = writer.id
+    writerName.addEventListener('click', () => getAndRenderOneWriter(writer))
+}
+
     // get and render one functions
 function getAndRenderOneSeason(season) {
     secondContainer.innerText = ''
