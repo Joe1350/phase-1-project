@@ -18,7 +18,7 @@ const likesAndCommentsContainer = select('#likes-comments-container')
 const seasonsButton = select('#seasons-button')
 const doctorsButton = select('#doctors-button')
 const companionButton = select('#companions-button')
-const directorButton = select('#director-button')
+const directorButton = select('#directors-button')
 
     // event listeners
 seasonsButton.addEventListener('click', () => {
@@ -73,7 +73,7 @@ function getOneDoctor(doctor) {
     let episodesDiv = create('Div')
     let spacer = create('div')
     actorDiv.id = 'actor-name'
-    actorDiv.innerText = 'Actor:'
+    actorDiv.innerText = `Actor for the ${doctor.incarnation}:`
     episodesDiv.id = 'episodes'
     episodesDiv.innerText = 'Episodes the actor was in:'
     spacer.className = 'spacer'
