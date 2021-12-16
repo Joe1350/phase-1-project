@@ -37,3 +37,17 @@ doctorsButton.addEventListener('click', () => {
     directorButton.innerText = ''
     getAllDoctors()
 })
+
+    // fetches
+function getAllSeasons() {
+    fetch(allSeasonsURL)
+    .then(r => r.json())
+    .then(seasons => seasons.forEach(season => renderAllSeasons(season)))
+}
+
+function getOneSeason(season) {
+    subcategoryContainer.innerText = ''
+    fetch(`${allSeasonsURL}${season.id}/serials`)
+    .then(r => r.json())
+    .then(season => season.forEach(episode => renderAllEpisodesForSeason(episode)))
+}
