@@ -1,8 +1,8 @@
     // URL's
 const allSeasonsURL = 'https://api.catalogopolis.xyz/v1/seasons/'
 const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors'
-const allDirectorsURL = 'https://api.catalogopolis.xyz/v1/directors'
-const allWritersURL = 'https://api.catalogopolis.xyz/v1/writers'
+const allDirectorsURL = 'https://api.catalogopolis.xyz/v1/directors/'
+const allWritersURL = 'https://api.catalogopolis.xyz/v1/writers/'
 
     // helpers
 const create = el => document.createElement(el)
@@ -85,7 +85,7 @@ function renderAllDoctors(doctor) {
 function renderAllDirectors(director) {
     let directorName = create('p')
     directorName.innerText = director.name
-    directorName.addEventListener('click', () => console.log(director))
+    directorName.addEventListener('click', () => getAndRenderOneDirector(director))
     firstContainer.append(directorName)
 }
 
@@ -129,5 +129,19 @@ function getAndRenderOneDoctor(doctor) {
         let episodeName = create('h2')
         episodeName.innerText = doctorEpisode.title
         episodesDiv.append(episodeName)
+    }))
+}
+
+function getAndRenderOneDirector(director) {
+    secondContainer.innerText = ''
+    let episodeDiv = create('div')
+    episodeDiv.innerText = `${director.name}'s Episodes:`
+    secondContainer.append(episodeDiv)
+    fetch(`${allDirectorsURL}${director.id}/serials`)
+    .then(r => r.json())
+    .then(director => director.forEach(directorEpisode => {
+        let episodeName = create('p')
+        episodeName.innerText = directorEpisode.title
+        episodeDiv.append(episodeName)
     }))
 }
