@@ -58,6 +58,12 @@ function getAllDirectors() {
     .then(directors => directors.forEach(director => renderAllDirectors(director)))
 }
 
+function getAllWriters() {
+    fetch(allWritersURL)
+    .then(r => r.json())
+    .then(writers => writers.forEach(writer => renderAllWriters(writer)))
+}
+
     // render  all functions
 function renderAllSeasons(season) {
     let seasonName = create('h1')
