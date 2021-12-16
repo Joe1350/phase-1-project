@@ -17,6 +17,7 @@ const seasonsButton = select('#seasons-button')
 const doctorsButton = select('#doctors-button')
 const directorButton = select('#directors-button')
 const writersButton = select('#writers-button')
+const refresh = select('#refresh')
 
     // event listeners
 seasonsButton.addEventListener('click', () => {
@@ -149,7 +150,7 @@ function clearPage() {
     secondContainer.innerText = ''
     extraContainer.innerText = ''
     writersButton.innerText = ''
-    // change refresh button from none to block
+    refresh.style.display = 'block'
 }
 
 function renderOneEpisode(path) {

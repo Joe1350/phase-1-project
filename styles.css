@@ -27,3 +27,7 @@ body {
     width: 50px;
     margin-bottom: 25px;
 }
+
+#refresh {
+    display: none
+}
