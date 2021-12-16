@@ -12,10 +12,28 @@ const select = el => document.querySelector(el)
 const categoryContainer = select('#category-container')
 const subcategoryContainer = select('#subcategory-container')
 const episodeDetails = select('#episode-detail-container')
-// might rename
+// might rename the container
 const likesAndCommentsContainer = select('#likes-comments-container')
-//might rename
+//might rename the container
 const seasonsButton = select('#seasons-button')
 const doctorsButton = select('#doctors-button')
 const companionButton = select('#companions-button')
-let directorButton = select('#director-button')
+const directorButton = select('#director-button')
+
+    // event listeners
+seasonsButton.addEventListener('click', () => {
+    categoryContainer.innerText = ''
+    subcategoryContainer.innerText = ''
+    episodeDetails.innerText = ''
+    likesAndCommentsContainer.innerText = ''
+    // change refresh button from none to block
+    getAllSeasons()
+})
+
+doctorsButton.addEventListener('click', () => {
+    categoryContainer.innerText = ''
+    subcategoryContainer.innerText = ''
+    episodeDetails.innerText = ''
+    directorButton.innerText = ''
+    getAllDoctors()
+})
