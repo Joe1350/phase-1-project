@@ -51,3 +51,19 @@ function getOneSeason(season) {
     .then(r => r.json())
     .then(season => season.forEach(episode => renderAllEpisodesForSeason(episode)))
 }
+
+    // render function
+function renderAllSeasons(season) {
+    let seasonName = create('h1')
+    seasonName.innerText = season.name
+    seasonName.style.fontSize = '20px'
+    seasonName.addEventListener('click', () => getOneSeason(season))
+    categoryContainer.append(seasonName)
+}
+
+function renderAllEpisodesForSeason(episode) {
+    let episodeName = create('h2')
+    episodeName.innerText = episode.title
+    episodeName.addEventListener('click', () => getOneEpisode(episode))
+    subcategoryContainer.append(episodeName)
+}
