@@ -37,6 +37,15 @@ doctorsButton.addEventListener('click', () => {
     getAllDoctors()
 })
 
+directorButton.addEventListener('click', () => {
+    firstContainer.innerText = ''
+    secondContainer.innerText = ''
+    extraContainer.innerText = ''
+    writersButton.innerText = ''
+    // change refresh button from none to block
+    getAlldirectors()
+})
+
     // get all fetches
 function getAllSeasons() {
     fetch(allSeasonsURL)
@@ -49,6 +58,7 @@ function getAllDoctors() {
     .then(r => r.json())
     .then(doctors => doctors.forEach(doctor => renderAllDoctors(doctor)))
 }
+
 
     // render  all functions
 function renderAllSeasons(season) {
