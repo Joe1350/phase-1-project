@@ -43,7 +43,7 @@ directorButton.addEventListener('click', () => {
     extraContainer.innerText = ''
     writersButton.innerText = ''
     // change refresh button from none to block
-    getAlldirectors()
+    getAllDirectors()
 })
 
     // get all fetches
@@ -62,7 +62,7 @@ function getAllDoctors() {
 function getAllDirectors() {
     fetch(allDirectorsURL)
     .then(r => r.json())
-    .then(directors => directors.forEach(director => console.log(director)))
+    .then(directors => directors.forEach(director => renderAllDirectors(director)))
 }
 
     // render  all functions
@@ -70,7 +70,7 @@ function renderAllSeasons(season) {
     let seasonName = create('h1')
     seasonName.innerText = season.name
     seasonName.style.fontSize = '20px'
-    seasonName.addEventListener('click', () => getOneSeason(season))
+    seasonName.addEventListener('click', () => getAndRenderOneSeason(season))
     firstContainer.append(seasonName)
 }
 
@@ -78,12 +78,19 @@ function renderAllDoctors(doctor) {
     let doctorName = create('h1')
     doctorName.innerText = doctor.incarnation
     doctorName.style.fontSize = '20px'
-    doctorName.addEventListener('click', () => getOneDoctor(doctor))
+    doctorName.addEventListener('click', () => getAndRenderOneDoctor(doctor))
     firstContainer.append(doctorName)
 }
 
+function renderAllDirectors(director) {
+    let directorName = create('p')
+    directorName.innerText = director.name
+    directorName.addEventListener('click', () => console.log(director))
+    firstContainer.append(directorName)
+}
+
     // get one w/ render one functions
-function getOneSeason(season) {
+function getAndRenderOneSeason(season) {
     secondContainer.innerText = ''
     let episodeDiv = create('div')
     episodeDiv.id = 'episode-div'
@@ -98,7 +105,7 @@ function getOneSeason(season) {
     }))
 }
 
-function getOneDoctor(doctor) {
+function getAndRenderOneDoctor(doctor) {
     secondContainer.innerText = ''
     let actorDiv = create('div')
     let episodesDiv = create('Div')
