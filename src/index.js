@@ -48,9 +48,17 @@ function getAllSeasons() {
 
 function getOneSeason(season) {
     subcategoryContainer.innerText = ''
+    let episodeDiv = create('div')
+    episodeDiv.id = 'episode-div'
+    episodeDiv.innerText = `${season.name}:`
+    subcategoryContainer.append(episodeDiv)
     fetch(`${allSeasonsURL}${season.id}/serials`)
     .then(r => r.json())
-    .then(season => season.forEach(episode => renderAllEpisodesForSeason(episode)))
+    .then(season => season.forEach(episode => {
+        let episodeName = create('h2')
+        episodeName.innerText = `${episode.serial}. ${episode.title}`
+        episodeDiv.append(episodeName)
+    }))
 }
 
 function getAllDoctors() {
@@ -96,10 +104,7 @@ function renderAllSeasons(season) {
 }
 
 function renderAllEpisodesForSeason(episode) {
-    let episodeName = create('h2')
-    episodeName.innerText = episode.title
-    episodeName.addEventListener('click', () => getOneEpisode(episode))
-    subcategoryContainer.append(episodeName)
+    
 }
 
 function renderAllDoctors(doctor) {
