@@ -137,17 +137,7 @@ function getAndRenderOneDoctor(doctor) {
         episodeName.innerText = doctorEpisode.title
         likeButton.innerText = 'Like'
         likeButton.className = ''
-        likeButton.addEventListener('click', (e) => {
-            if(e.target.className === '') {
-                e.target.style.backgroundColor = 'red'
-                e.target.style.color = 'white'
-                e.target.className = 'liked'
-            } else if (e.target.className === 'liked') {
-                e.target.style.backgroundColor = 'white'
-                e.target.style.color = 'black'
-                e.target.className = ''
-            }
-        })
+        likeButton.addEventListener('click', (e) => likeButtonClickEvent(e))
         episodeName.append(likeButton)
         episodesDiv.append(episodeName)
     }))
@@ -182,19 +172,21 @@ function renderOneEpisode(path) {
     episodeName.innerText = `${path}  `
     likeButton.innerText = 'Like'
     likeButton.className = ''
-    likeButton.addEventListener('click', (e) => {
-        if(e.target.className === '') {
-            e.target.style.backgroundColor = 'red'
-            e.target.style.color = 'white'
-            e.target.className = 'liked'
-        } else if (e.target.className === 'liked') {
-            e.target.style.backgroundColor = 'white'
-            e.target.style.color = 'black'
-            e.target.className = ''
-        }
-    })
+    likeButton.addEventListener('click', (e) => likeButtonClickEvent(e))
     episodeName.append(likeButton)
     secondContainer.append(episodeName)
+}
+
+function likeButtonClickEvent(e) {
+    if(e.target.className === '') {
+        e.target.style.backgroundColor = 'red'
+        e.target.style.color = 'white'
+        e.target.className = 'liked'
+    } else if (e.target.className === 'liked') {
+        e.target.style.backgroundColor = 'white'
+        e.target.style.color = 'black'
+        e.target.className = ''
+    }
 }
 
 })
