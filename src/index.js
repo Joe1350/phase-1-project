@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
     // URL's
 const allSeasonsURL = 'https://api.catalogopolis.xyz/v1/seasons/'
 const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors/'
@@ -20,26 +21,24 @@ const writersButton = select('#writers-button')
 const refresh = select('#refresh')
 
     // event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    seasonsButton.addEventListener('click', () => {
-        clearPage()
-        getAllSeasons()
-    })
+seasonsButton.addEventListener('click', () => {
+    clearPage()
+    getAllSeasons()
+})
     
-    doctorsButton.addEventListener('click', () => {
-        clearPage()
-        getAllDoctors()
-    })
+doctorsButton.addEventListener('click', () => {
+    clearPage()
+    getAllDoctors()
+})
     
-    directorButton.addEventListener('click', () => {
-        clearPage()
-        getAllDirectors()
-    })
+directorButton.addEventListener('click', () => {
+    clearPage()
+    getAllDirectors()
+})
     
-    writersButton.addEventListener('click', () => {
-        clearPage()
-        getAllWriters()
-    })
+writersButton.addEventListener('click', () => {
+    clearPage()
+    getAllWriters()
 })
 
     // get all fetches
@@ -182,3 +181,5 @@ function renderOneEpisode(path) {
     episodeName.append(likeButton)
     secondContainer.append(episodeName)
 }
+
+})
