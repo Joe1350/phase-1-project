@@ -21,10 +21,17 @@ body {
 #content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#second-container {
+    top: auto;
+    position: relative;
+    /* overflow-y: scroll;
+    overflow-x: hidden; */
 }
 
 .spacer {
-    width: 50px;
     margin-bottom: 25px;
 }
 
