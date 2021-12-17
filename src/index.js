@@ -151,7 +151,6 @@ function getAndRenderOneWriter(writer) {
     .then(episodes => episodes.forEach(episode => renderOneEpisode(`${episode.title}`)))
 }
 
-
     // callback functions
 function clearPage() {
     firstContainer.innerText = ''
