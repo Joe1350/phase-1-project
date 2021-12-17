@@ -133,7 +133,22 @@ function getAndRenderOneDoctor(doctor) {
     .then(r => r.json())
     .then(doctorEpisodes => doctorEpisodes.forEach(doctorEpisode => {
         let episodeName = create('p')
+        let likeButton = create('button')
         episodeName.innerText = doctorEpisode.title
+        likeButton.innerText = 'Like'
+        likeButton.className = ''
+        likeButton.addEventListener('click', (e) => {
+            if(e.target.className === '') {
+                e.target.style.backgroundColor = 'red'
+                e.target.style.color = 'white'
+                e.target.className = 'liked'
+            } else if (e.target.className === 'liked') {
+                e.target.style.backgroundColor = 'white'
+                e.target.style.color = 'black'
+                e.target.className = ''
+            }
+        })
+        episodeName.append(likeButton)
         episodesDiv.append(episodeName)
     }))
 }
@@ -164,7 +179,7 @@ function clearPage() {
 function renderOneEpisode(path) {
     let episodeName = create('p')
     let likeButton = create('button')
-    episodeName.innerText = `${path} `
+    episodeName.innerText = `${path}  `
     likeButton.innerText = 'Like'
     likeButton.className = ''
     likeButton.addEventListener('click', (e) => {
