@@ -1,10 +1,6 @@
 html {
     background-color: rgb(16, 35, 114);
-    color: white;
-}
-
-body {
-    background-color: rgba(16, 35, 114, 0.85);
+    color: #fff;
 }
 
 header {
@@ -17,7 +13,7 @@ header {
 }
 
 #header-black-box {
-    background-color: black;
+    background-color: #000;
     width: 100%;
     height: 250px;
     text-align: center;
