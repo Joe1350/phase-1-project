@@ -105,12 +105,13 @@ function getAndRenderOneSeason(season) {
         } else {
             renderOneEpisode(episode.title)
         }
-        
     }))
 }
 
 function getAndRenderOneDoctor(doctor) {
     secondContainer.innerText = ''
+    firstContainer.style.position = 'fixed'
+    secondContainer.style.position = 'absolute'
     let actorDiv = create('div')
     let episodesDiv = create('Div')
     let spacer = create('div')
