@@ -99,7 +99,14 @@ function getAndRenderOneSeason(season) {
     secondContainer.innerText = `${season.name}:`
     fetch(`${allSeasonsURL}${season.id}/serials`)
     .then(r => r.json())
-    .then(season => season.forEach(episode => renderOneEpisode(`${episode.serial}. ${episode.title}`)))
+    .then(season => season.forEach(episode => {
+        if(episode.serial) {
+            renderOneEpisode(`${episode.serial}. ${episode.title}`)
+        } else {
+            renderOneEpisode(episode.title)
+        }
+        
+    }))
 }
 
 function getAndRenderOneDoctor(doctor) {
