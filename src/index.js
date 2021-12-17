@@ -162,6 +162,21 @@ function clearPage() {
 
 function renderOneEpisode(path) {
     let episodeName = create('p')
-    episodeName.innerText = path
+    let likeButton = create('button')
+    episodeName.innerText = `${path} `
+    likeButton.innerText = 'Like'
+    likeButton.className = ''
+    likeButton.addEventListener('click', (e) => {
+        if(e.target.className === '') {
+            e.target.style.backgroundColor = 'red'
+            e.target.style.color = 'white'
+            e.target.className = 'liked'
+        } else if (e.target.className === 'liked') {
+            e.target.style.backgroundColor = 'white'
+            e.target.style.color = 'black'
+            e.target.className = ''
+        }
+    })
+    episodeName.append(likeButton)
     secondContainer.append(episodeName)
 }
