@@ -20,24 +20,26 @@ const writersButton = select('#writers-button')
 const refresh = select('#refresh')
 
     // event listeners
-seasonsButton.addEventListener('click', () => {
-    clearPage()
-    getAllSeasons()
-})
-
-doctorsButton.addEventListener('click', () => {
-    clearPage()
-    getAllDoctors()
-})
-
-directorButton.addEventListener('click', () => {
-    clearPage()
-    getAllDirectors()
-})
-
-writersButton.addEventListener('click', () => {
-    clearPage()
-    getAllWriters()
+document.addEventListener('DOMContentLoaded', () => {
+    seasonsButton.addEventListener('click', () => {
+        clearPage()
+        getAllSeasons()
+    })
+    
+    doctorsButton.addEventListener('click', () => {
+        clearPage()
+        getAllDoctors()
+    })
+    
+    directorButton.addEventListener('click', () => {
+        clearPage()
+        getAllDirectors()
+    })
+    
+    writersButton.addEventListener('click', () => {
+        clearPage()
+        getAllWriters()
+    })
 })
 
     // get all fetches
