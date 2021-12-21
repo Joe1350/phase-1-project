@@ -34,7 +34,7 @@ I would like to maybe one day make the likes persist.
 I would also like to add a link to third-party episode details, espescially for episodes that aren't in the api.
 I would also like to add links for buying and/or watching the episodes
 
-## contributing
+## Contributing
 
 I am currently not open to contributers.
 
