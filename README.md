@@ -3,7 +3,7 @@
 My phase 1 project is a Doctor Who database. You can look for episodes by season, doctor, director, or writer.
 From there, you can look at individual episode details, if they exist within the api.
 
-project guidelines: https://github.com/learn-co-curriculum/phase-1-javascript-project-mode
+[Project Guidelines](https://github.com/learn-co-curriculum/phase-1-javascript-project-mode)
 
 ## Installation
 
