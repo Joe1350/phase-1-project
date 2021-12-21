@@ -65,6 +65,12 @@ function getAllWriters() {
     .then(writers => writers.forEach(writer => renderAllWriters(writer)))
 }
 
+function fetchAllEpisodes(episodeName) {
+    fetch('https://api.catalogopolis.xyz/v1/episodes')
+    .then(r => r.json())
+    .then(episodes => findEpisode(episodes, episodeName))
+}
+
     // render  all functions
 function renderAllSeasons(season) {
     let seasonName = create('p')
@@ -171,6 +177,9 @@ function renderOneEpisode(path) {
     episodeName.innerText = `${path}  `
     likeButton.innerText = 'Like'
     likeButton.className = ''
+    
+    episodeName.addEventListener('click', () => fetchAllEpisodes(episodeName))
+
     likeButton.addEventListener('click', (e) => likeButtonClickEvent(e))
     episodeName.append(likeButton)
     secondContainer.append(episodeName)
@@ -186,6 +195,24 @@ function likeButtonClickEvent(e) {
         e.target.style.color = 'black'
         e.target.className = ''
     }
+}
+
+function findEpisode(episodes, episodeName) {
+    let nameMinusNumber = episodeName.innerText.split(' ').slice(1)
+    let nameMinusLike = []
+    for (let word of nameMinusNumber) {
+        if (word === 'Like'){
+            // do nothing
+        } else {
+            nameMinusLike.push(word)
+        }
+    }
+    let name = nameMinusLike.join(' ')
+    episodes.find(episode => {
+        if(episode.title == name) {
+            console.log(episode) // render episode
+        }
+    })
 }
 
 })
