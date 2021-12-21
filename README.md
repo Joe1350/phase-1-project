@@ -10,6 +10,9 @@ From there, you can look at individual episode details, if they exist within the
 There is no installation. Project can be viewed at:
 https://joe1350.github.io/phase-1-project/
 
+This project was designed for chrome on desktop.
+Currently mobile viewing does not work properly.
+
 ## Visuals
 
 I'll try and add a gif here soon
@@ -30,9 +33,12 @@ There is not any support for this project.
 
 ## Roadmap
 
-I would like to maybe one day make the likes persist.
-I would also like to add a link to third-party episode details, espescially for episodes that aren't in the api.
-I would also like to add links for buying and/or watching the episodes
+I would like to:
+
+Add media queries to allow mobile viewing.
+Make the likes persist.
+Add a link to third-party episode details, espescially for episodes that aren't in the api.
+Add links for buying and/or watching the episodes
 
 ## Contributing
 
