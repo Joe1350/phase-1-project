@@ -116,7 +116,7 @@ function getAndRenderOneSeason(season) {
             likeButton.className = ''
             episodeName.addEventListener('click', () => {
                 fetchAllEpisodes(episodeName)
-                fetch('https://api.catalogopolis.xyz/v1/episodes')
+                fetch(allEpisodesURL)
                 .then(r => r.json())
                 .then(episodes => {
                         // make episodeName the actual name of the episode
@@ -133,7 +133,7 @@ function getAndRenderOneSeason(season) {
                         // find episode
                     for (let episode of episodes) {
                         if(episode.title == name) {
-                            renderEpisodeDetails(episode) // render episode
+                            renderEpisodeDetails(episode)
                             break;
                         } else {
                             renderNoEpisodeDetails(name)
@@ -250,7 +250,7 @@ function findEpisode(episodes, episodeName) {
         // find episode
     for (let episode of episodes) {
         if(episode.title == name) {
-            renderEpisodeDetails(episode) // render episode
+            renderEpisodeDetails(episode)
             break;
         } else {
             renderNoEpisodeDetails(name)
@@ -259,7 +259,6 @@ function findEpisode(episodes, episodeName) {
 }
 
 function renderEpisodeDetails(episode) {
-    // console.log(episode)
     extraContainer.innerText = ''
     let title = create('p')
     let airDate = create('p')
