@@ -35,10 +35,10 @@ There is not any support for this project.
 
 I would like to:
 
--Add media queries to allow mobile viewing.
--Make the likes persist.
--Add a link to third-party episode details, espescially for episodes that aren't in the api.
--Add links for buying and/or watching the episodes
+- Add media queries to allow mobile viewing.
+- Make the likes persist.
+- Add a link to third-party episode details, espescially for episodes that aren't in the api.
+- Add links for buying and/or watching the episodes
 
 ## Contributing
 
