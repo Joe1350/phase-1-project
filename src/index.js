@@ -4,6 +4,7 @@ const allSeasonsURL = 'https://api.catalogopolis.xyz/v1/seasons/'
 const allDoctorsURL = 'https://api.catalogopolis.xyz/v1/doctors/'
 const allDirectorsURL = 'https://api.catalogopolis.xyz/v1/directors/'
 const allWritersURL = 'https://api.catalogopolis.xyz/v1/writers/'
+const allEpisodesURL = 'https://api.catalogopolis.xyz/v1/episodes'
 
     // helpers
 const create = el => document.createElement(el)
@@ -66,7 +67,7 @@ function getAllWriters() {
 }
 
 function fetchAllEpisodes(episodeName) {
-    fetch('https://api.catalogopolis.xyz/v1/episodes')
+    fetch(allEpisodesURL)
     .then(r => r.json())
     .then(episodes => findEpisode(episodes, episodeName))
 }
@@ -103,11 +104,46 @@ function renderAllWriters(writer) {
     // get and render one functions
 function getAndRenderOneSeason(season) {
     secondContainer.innerText = `${season.name}:`
+    extraContainer.innerText = ''
     fetch(`${allSeasonsURL}${season.id}/serials`)
     .then(r => r.json())
     .then(season => season.forEach(episode => {
         if(episode.serial) {
-            renderOneEpisode(`${episode.serial}. ${episode.title}`)
+            let episodeName = create('p')
+            let likeButton = create('button')
+            episodeName.innerText = `${episode.serial}. ${episode.title}  `
+            likeButton.innerText = 'Like'
+            likeButton.className = ''
+            episodeName.addEventListener('click', () => {
+                fetchAllEpisodes(episodeName)
+                fetch('https://api.catalogopolis.xyz/v1/episodes')
+                .then(r => r.json())
+                .then(episodes => {
+                        // make episodeName the actual name of the episode
+                    let nameMinusNumber = episodeName.innerText.split(' ').slice(1)
+                    let nameMinusLike = []
+                    for (let word of nameMinusNumber) {
+                        if (word === 'Like'){
+                            // do nothing
+                        } else {
+                            nameMinusLike.push(word)
+                        }
+                    }
+                    let name = nameMinusLike.join(' ')
+                        // find episode
+                    for (let episode of episodes) {
+                        if(episode.title == name) {
+                            renderEpisodeDetails(episode) // render episode
+                            break;
+                        } else {
+                            renderNoEpisodeDetails(name)
+                        }
+                    }
+                })
+            })
+            likeButton.addEventListener('click', (e) => likeButtonClickEvent(e))
+            episodeName.append(likeButton)
+            secondContainer.append(episodeName)
         } else {
             renderOneEpisode(episode.title)
         }
@@ -116,6 +152,7 @@ function getAndRenderOneSeason(season) {
 
 function getAndRenderOneDoctor(doctor) {
     secondContainer.innerText = ''
+    extraContainer.innerText = ''
     firstContainer.style.position = 'fixed'
     secondContainer.style.position = 'absolute'
     let actorDiv = create('div')
@@ -139,9 +176,10 @@ function getAndRenderOneDoctor(doctor) {
     .then(doctorEpisodes => doctorEpisodes.forEach(doctorEpisode => {
         let episodeName = create('p')
         let likeButton = create('button')
-        episodeName.innerText = doctorEpisode.title
+        episodeName.innerText = `${doctorEpisode.title} `
         likeButton.innerText = 'Like'
         likeButton.className = ''
+        episodeName.addEventListener('click', () => fetchAllEpisodes(episodeName))
         likeButton.addEventListener('click', (e) => likeButtonClickEvent(e))
         episodeName.append(likeButton)
         episodesDiv.append(episodeName)
@@ -149,6 +187,7 @@ function getAndRenderOneDoctor(doctor) {
 }
 
 function getAndRenderOneDirector(director) {
+    extraContainer.innerText = ''
     secondContainer.innerText = `${director.name} directed the following episodes:`
     fetch(`${allDirectorsURL}${director.id}/serials`)
     .then(r => r.json())
@@ -156,6 +195,7 @@ function getAndRenderOneDirector(director) {
 }
 
 function getAndRenderOneWriter(writer) {
+    extraContainer.innerText = ''
     secondContainer.innerText = `${writer.name} wrote the following episodes:`
     fetch(`${allWritersURL}${writer.id}/serials`)
     .then(r => r.json())
@@ -177,9 +217,7 @@ function renderOneEpisode(path) {
     episodeName.innerText = `${path}  `
     likeButton.innerText = 'Like'
     likeButton.className = ''
-    
     episodeName.addEventListener('click', () => fetchAllEpisodes(episodeName))
-
     likeButton.addEventListener('click', (e) => likeButtonClickEvent(e))
     episodeName.append(likeButton)
     secondContainer.append(episodeName)
@@ -198,9 +236,10 @@ function likeButtonClickEvent(e) {
 }
 
 function findEpisode(episodes, episodeName) {
-    let nameMinusNumber = episodeName.innerText.split(' ').slice(1)
+        // make episodeName be the actuall name
+    let nameAsArray = episodeName.innerText.split(' ')
     let nameMinusLike = []
-    for (let word of nameMinusNumber) {
+    for (let word of nameAsArray) {
         if (word === 'Like'){
             // do nothing
         } else {
@@ -208,11 +247,35 @@ function findEpisode(episodes, episodeName) {
         }
     }
     let name = nameMinusLike.join(' ')
-    episodes.find(episode => {
+        // find episode
+    for (let episode of episodes) {
         if(episode.title == name) {
-            console.log(episode) // render episode
+            renderEpisodeDetails(episode) // render episode
+            break;
+        } else {
+            renderNoEpisodeDetails(name)
         }
-    })
+    }
+}
+
+function renderEpisodeDetails(episode) {
+    // console.log(episode)
+    extraContainer.innerText = ''
+    let title = create('p')
+    let airDate = create('p')
+    let runtime = create('p')
+    let viewers = create('p')
+    let rating = create('p')
+    title.innerText = episode.title
+    airDate.innerText = `Aired: ${episode.originalAirDate.slice(5)}-${episode.originalAirDate.slice(0, 4)}`
+    runtime.innerText = `Runtime: ${episode.runtime}`
+    viewers.innerText = `Viewers: ${episode.ukViewersMM} million `
+    rating.innerText = `Rating: ${episode.appreciationIndex} / 100`
+    extraContainer.append(title, airDate, runtime, viewers, rating)
+}
+
+function renderNoEpisodeDetails(name) {
+    extraContainer.innerText = `${name} is not in the DataBase`
 }
 
 })
