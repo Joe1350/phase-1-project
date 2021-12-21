@@ -40,8 +40,6 @@ I am currently not open to contributers.
 
 ## Authors and Acknowledgment
 
-Currently, I am the only author.
-
 I would like to provide credit to:
 
 catalogopolis (https://api.catalogopolis.xyz/docs/) for the api that provided the data for my website.
