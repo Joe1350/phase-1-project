@@ -7,7 +7,7 @@ project guidelines: https://github.com/learn-co-curriculum/phase-1-javascript-pr
 
 ## Installation
 
-There is no installation, project can be viwed at:
+There is no installation, project can be viewed at:
 https://joe1350.github.io/phase-1-project/
 
 ## Visuals
