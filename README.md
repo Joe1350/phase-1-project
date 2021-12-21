@@ -1,4 +1,4 @@
-# phase-1-project: Doctor Who Database
+# Phase-1-Project: Doctor Who Database
 
 My phase 1 project is a Doctor Who database. You can look for episodes by season, doctor, director, or writer.
 From there, you can look at individual episode details, if they exist within the api.
@@ -7,7 +7,7 @@ project guidelines: https://github.com/learn-co-curriculum/phase-1-javascript-pr
 
 ## Installation
 
-There is no installation, project can be viewed at:
+There is no installation. Project can be viewed at:
 https://joe1350.github.io/phase-1-project/
 
 ## Visuals
