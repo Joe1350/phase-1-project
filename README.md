@@ -42,13 +42,13 @@ I am currently not open to contributers.
 
 I would like to provide credit to:
 
-catalogopolis (https://api.catalogopolis.xyz/docs/) for the api that provided the data for my website.
-Beauty Wallpaper (http://be-wallpapers.blogspot.com/2013/11/doctor-who-title-black-wallpaper.html) for the header to my website.
+[catalogopolis](https://api.catalogopolis.xyz/docs/) for the api that provided the data for my website.
+[Beauty Wallpaper](http://be-wallpapers.blogspot.com/2013/11/doctor-who-title-black-wallpaper.html) for the header to my website.
 The BBC for creating the show that this website is based on.
 
 ## License
 
-no license
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Project Status
 
