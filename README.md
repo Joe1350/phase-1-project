@@ -13,10 +13,6 @@ https://joe1350.github.io/phase-1-project/
 This project was designed for chrome on desktop.
 Currently mobile viewing does not work properly.
 
-## Visuals
-
-I'll try and add a gif here soon
-
 ## Usage
 
 This is a single page web application. When it first loads you will see all the categories you can browse through.
