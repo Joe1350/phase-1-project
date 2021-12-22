@@ -274,7 +274,7 @@ function renderEpisodeDetails(episode) {
 }
 
 function renderNoEpisodeDetails(name) {
-    extraContainer.innerText = `${name} is not in the DataBase`
+    extraContainer.innerText = `${name} is not in the Database`
 }
 
 })
