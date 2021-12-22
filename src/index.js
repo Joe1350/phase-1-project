@@ -115,7 +115,6 @@ function getAndRenderOneSeason(season) {
             likeButton.innerText = 'Like'
             likeButton.className = ''
             episodeName.addEventListener('click', () => {
-                fetchAllEpisodes(episodeName)
                 fetch(allEpisodesURL)
                 .then(r => r.json())
                 .then(episodes => {
